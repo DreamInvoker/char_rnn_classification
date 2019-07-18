@@ -1,0 +1,11 @@
+validation-acc:%.2d%% 46.72293942403178
+Traceback (most recent call last):
+  File "train.py", line 56, in <module>
+    
+  File "train.py", line 25, in fit
+    pred, hidden = model(l, hidden)
+  File "/usr/local/lib/python3.6/dist-packages/torch/tensor.py", line 107, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/usr/local/lib/python3.6/dist-packages/torch/autograd/__init__.py", line 93, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.
