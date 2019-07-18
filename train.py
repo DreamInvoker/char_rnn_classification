@@ -20,20 +20,20 @@ def fit(model, epochs, n_hidden, criterion, x_train, y_train, x_val, y_val, opt,
     history_loss = []
     for epoch in range(epochs):
         hidden = torch.zeros((1, n_hidden)).to(dev)
-        loss = 0
+
         tic = time.time()
         index = list(range(len(x_train)))
         random.shuffle(index)
+
         model.train()
 
-        opt.zero_grad()
         for i in index:
+            opt.zero_grad()
             x, y = x_train[i].to(dev), y_train[i].to(dev)
             for l in x:
                 pred, hidden = model(l, hidden)
-            loss += criterion(pred, y)
-        loss /= len(x_train)
-        loss.backward()
+        loss = criterion(pred, y)
+        loss.backward(retain_graph=True)
         opt.step()
 
         print('Epoch {}'.format(epoch))
